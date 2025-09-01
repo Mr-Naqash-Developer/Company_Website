@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between items-center py-6 px-8 bg-white shadow-lg">
-      <Image src={logo} alt="Hexagonic" className="w-[35px] h-[26px]" />
+      <Image width={35} height={26} src={logo} alt="Hexagonic" />
       <div className="flex gap-6 text-md text-[#4A5568] font-semibold">
         {navMenuItems.map((item, id) => (
           <Link key={id} href={item.href}>

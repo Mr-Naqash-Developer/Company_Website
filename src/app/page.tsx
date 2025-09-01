@@ -1,11 +1,11 @@
-import Navbar from '@/components/Navbar'
 import HeroSection from '@/sections/HeroSection'
-import React from 'react'
+import ServicesSection from '@/sections/ServicesSection'
 
 const HomePage = () => {
   return (
     <div>
       <HeroSection />
+      <ServicesSection />
     </div>
   )
 }
