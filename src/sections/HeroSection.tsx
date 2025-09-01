@@ -40,7 +40,7 @@ const HeroSection = () => {
 
       {/* Decorative Sphere */}
       <Image
-        className="absolute hidden md:flex bottom-0 left-1/2 md:left-[35%] -translate-x-1/2 translate-y-1/2 w-32 sm:w-48 md:w-auto "
+        className="absolute hidden md:flex bottom-0 left-1/2 md:left-[35%] -translate-x-1/2 translate-y-1/2 w-16 md:w-20 "
         src={sphere}
         alt="sphere"
       />
