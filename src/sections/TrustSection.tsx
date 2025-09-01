@@ -46,8 +46,8 @@ const TrustSection: React.FC = () => {
     <section className="xl:px-24 mx-auto px-4 sm:px-6 py-20 sm:py-32 md:py-44 min-h-[60vh] md:min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center relative overflow-hidden">
       {/* Left */}
       <div>
-        <hr className="w-16 sm:w-24 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium leading-snug mb-6 sm:mb-10">
+        <hr className="w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
+        <h1 className="text-2xl sm:text-3xl md:text-4xl leading-snug mb-6 sm:mb-10">
           Leading companies trust us <br />
           <span className="text-black font-bold">to develop software</span>
         </h1>

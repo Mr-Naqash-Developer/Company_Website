@@ -2,6 +2,14 @@ import card_img_1 from "../assets/card_img_1.png"
 import card_img_2 from "../assets/card_img_2.png"
 import card_img_3 from "../assets/card_img_3.png"
 
+import meet_carousel_1 from "../assets/meet_carousel_1.png"
+import meet_carousel_2 from "../assets/meet_carousel_2.png"
+import meet_carousel_3 from "../assets/meet_carousel_3.png"
+import meet_carousel_4 from "../assets/meet_carousel_4.png"
+import meet_carousel_5 from "../assets/meet_carousel_5.png"
+import meet_carousel_6 from "../assets/meet_carousel_6.png"
+import meet_carousel_7 from "../assets/meet_carousel_7.png"
+
 export const cards = [
   {
     id: 1,
@@ -34,4 +42,35 @@ export const cards = [
     img: card_img_2
   },
   
+]
+
+export const meetCarousel = [
+  {
+    id: 1,
+    img: meet_carousel_1
+  },
+  {
+    id: 2,
+    img: meet_carousel_2
+  },
+  {
+    id: 3,
+    img: meet_carousel_3
+  },
+  {
+    id: 4,
+    img: meet_carousel_4
+  },
+  {
+    id: 5,
+    img: meet_carousel_5
+  },
+  {
+    id: 6,
+    img: meet_carousel_6
+  },
+  {
+    id: 7,
+    img: meet_carousel_7
+  },
 ]
