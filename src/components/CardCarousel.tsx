@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -9,13 +10,20 @@ import { cards } from "@/data/card";
 import Image from "next/image";
 
 export default function CardCarousel() {
+  const totalSlides = cards.length;
+
+  // ✅ React states instead of DOM query
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [progress, setProgress] = useState((1 / totalSlides) * 100);
+
   return (
-    <div className="max-w-6xl mx-auto pt-10">
+    <div className="xl:px-24 mx-auto pt-10">
       <Swiper
         modules={[Pagination]}
+        loop={true}
         spaceBetween={40}
         slidesPerView={3}
-        centeredSlides={true} // keep centered active card
+        centeredSlides={true}
         pagination={{
           clickable: true,
           el: ".custom-pagination",
@@ -23,50 +31,30 @@ export default function CardCarousel() {
           bulletActiveClass: "swiper-pagination-bullet-active",
         }}
         onInit={(swiper) => {
-          const total = swiper.slides.length;
-          document.querySelector(".custom-fraction-total")!.textContent = total
-            .toString()
-            .padStart(2, "0");
-          document.querySelector(".custom-fraction-current")!.textContent = (
-            swiper.realIndex + 1
-          )
-            .toString()
-            .padStart(2, "0");
-
-          const progress = ((swiper.realIndex + 1) / total) * 100;
-          (
-            document.querySelector(".swiper-pagination-progress") as HTMLElement
-          ).style.width = `${progress}%`;
+          setCurrentIndex(swiper.realIndex + 1);
+          setProgress(((swiper.realIndex + 1) / totalSlides) * 100);
         }}
         onSlideChange={(swiper) => {
-          document.querySelector(".custom-fraction-current")!.textContent = (
-            swiper.realIndex + 1
-          )
-            .toString()
-            .padStart(2, "0");
-
-          const total = swiper.slides.length;
-          const progress = ((swiper.realIndex + 1) / total) * 100;
-          (
-            document.querySelector(".swiper-pagination-progress") as HTMLElement
-          ).style.width = `${progress}%`;
+          const newIndex = (swiper.realIndex % totalSlides) + 1;
+          setCurrentIndex(newIndex);
+          setProgress((newIndex / totalSlides) * 100);
         }}
         breakpoints={{
-          320: { slidesPerView: 1, centeredSlides: true },
-          768: { slidesPerView: 2, centeredSlides: true },
-          1024: { slidesPerView: 3, centeredSlides: true },
+          320: { slidesPerView: 1, spaceBetween: 20 },   // 📱 Mobile
+          640: { slidesPerView: 2, spaceBetween: 30 },   // 📱 Tablets
+          1024: { slidesPerView: 3, spaceBetween: 40 },  // 💻 Desktop
         }}
       >
+
         {cards.map((item) => (
           <SwiperSlide key={item.id}>
             {({ isActive }) => (
               <div
                 className={`flex flex-col gap-5 rounded-lg p-6 transition-all duration-300
-                ${
-                  isActive
-                    ? "bg-white shadow-lg border-2 border-pink-500 translate-y-2"
+                ${isActive
+                    ? "bg-white shadow-lg border-2 border-pink-500 translate-y-4"
                     : "bg-white shadow-md border border-gray-200"
-                }`}
+                  }`}
               >
                 {/* Gradient border with ring */}
                 <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-pink-500 to-blue-500 p-[2px]">
@@ -82,9 +70,8 @@ export default function CardCarousel() {
                 </div>
 
                 <h1
-                  className={`font-bold text-xl ${
-                    isActive ? "text-pink-600" : "text-[#2D3748]"
-                  }`}
+                  className={`font-bold text-xl ${isActive ? "text-pink-600" : "text-[#2D3748]"
+                    }`}
                 >
                   {item.title}
                 </h1>
@@ -94,33 +81,37 @@ export default function CardCarousel() {
           </SwiperSlide>
         ))}
 
-        {/* Pagination row: 1fr | dots | fraction | 1fr */}
-        <div className="mt-10 grid grid-cols-[1fr_auto_auto_1fr] items-center">
-          {/* Dots (centered on the page) */}
+        {/* Pagination row */}
+        <div className="mt-20 flex flex-col  justify-center">
+          {/* Dots in center */}
           <div
-            className="custom-pagination col-start-2 justify-self-center flex gap-2
-              [&>.swiper-pagination-bullet]:w-3
-              [&>.swiper-pagination-bullet]:h-3
-              [&>.swiper-pagination-bullet]:rounded-full
-              [&>.swiper-pagination-bullet]:bg-gray-500
-              [&>.swiper-pagination-bullet-active]:bg-gradient-to-tr
-              [&>.swiper-pagination-bullet-active]:from-[#57007B]
-              [&>.swiper-pagination-bullet-active]:to-[#F76680]"
+            className="custom-pagination flex gap-2 justify-center items-center flex-1
+                      [&>.swiper-pagination-bullet]:w-3
+                      [&>.swiper-pagination-bullet]:h-3
+                      [&>.swiper-pagination-bullet]:rounded-full
+                    [&>.swiper-pagination-bullet]:bg-gray-500
+                      [&>.swiper-pagination-bullet-active]:bg-gradient-to-tr
+                    [&>.swiper-pagination-bullet-active]:from-[#57007B]
+                    [&>.swiper-pagination-bullet-active]:to-[#F76680]"
           ></div>
 
-          {/* Fraction + progress (immediately to the right of dots) */}
-          <div className="col-start-3 ml-6 flex items-center gap-4 text-[#57007B]">
+          {/* Fraction + progress on right side */}
+          <div className="ml-6 flex items-center justify-end gap-4 text-[#57007B]">
             <span className="custom-fraction-current text-lg font-semibold">
-              01
+              {currentIndex.toString().padStart(2, "0")}
             </span>
-            <div className="w-32 h-[3px] bg-gray-200 relative overflow-hidden">
-              <div className="swiper-pagination-progress absolute left-0 top-0 h-full bg-[#57007B] transition-[width] duration-300"></div>
+            <div className="w-20 h-[2px] bg-gray-200 relative overflow-hidden">
+              <div
+                className="swiper-pagination-progress absolute left-0 top-0 h-full bg-[#57007B] transition-[width] duration-300"
+                style={{ width: `${progress}%` }}
+              ></div>
             </div>
             <span className="custom-fraction-total text-lg font-semibold">
-              05
+              {totalSlides.toString().padStart(2, "0")}
             </span>
           </div>
         </div>
+
       </Swiper>
     </div>
   );

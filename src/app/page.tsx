@@ -1,11 +1,13 @@
+import TrustSection from '@/components/TrustSection'
 import HeroSection from '@/sections/HeroSection'
 import ServicesSection from '@/sections/ServicesSection'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className=''>
       <HeroSection />
       <ServicesSection />
+      <TrustSection />
     </div>
   )
 }
