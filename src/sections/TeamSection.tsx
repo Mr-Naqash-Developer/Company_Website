@@ -13,14 +13,7 @@ import user1 from "../assets/member1.jpg";
 const Carousel = dynamic(() => import("react-multi-carousel"), { ssr: false });
 import "react-multi-carousel/lib/styles.css";
 
-interface Testimonial {
-  id: number;
-  name: string;
-  title: string;
-  img: any;
-}
-
-const testimonials: Testimonial[] = [
+const testimonials = [
   { id: 1, name: "Romeena De Silva", title: "Janet Cosmetics", img: user1 },
   { id: 2, name: "John Smith", title: "Tech Lead", img: user1 },
   { id: 3, name: "Imran Khan", title: "Software Engineer", img: user1 },
@@ -51,12 +44,6 @@ const TeamSection: React.FC = () => {
   const [itemsPerView, setItemsPerView] = useState(5);
   const [mounted, setMounted] = useState(false);
 
-  const responsive = {
-    xl: { breakpoint: { max: 3000, min: 1280 }, items: 5 },
-    lg: { breakpoint: { max: 1280, min: 640 }, items: 3 },
-    sm: { breakpoint: { max: 640, min: 0 }, items: 1 },
-  };
-
   useEffect(() => {
     setMounted(true);
     const calc = () => {
@@ -78,6 +65,11 @@ const TeamSection: React.FC = () => {
     },
     []
   );
+
+  if (!mounted) {
+    // Render nothing on server to avoid mismatch
+    return null;
+  }
 
   const normalizedIndex = currentSlide % testimonials.length;
   const centerOffset = Math.floor(itemsPerView / 2);
@@ -101,8 +93,6 @@ const TeamSection: React.FC = () => {
       <div className="relative flex items-center justify-center max-w-full sm:max-w-3xl mx-auto mt-12 sm:mt-20 text-center px-4">
         <Image
           src={leftComma}
-          // width={15}
-          // height={15}
           alt="Left Comma"
           className="absolute left-0 sm:-left-10 top-0 w-2 h-4 md:h-7 md:w-4"
         />
@@ -114,8 +104,6 @@ const TeamSection: React.FC = () => {
         </p>
         <Image
           src={rightComma}
-          // width={15}
-          // height={15}
           alt="Right Comma"
           className="absolute right-0 sm:-right-10 bottom-0 w-2 h-4 md:h-7 md:w-4"
         />
@@ -123,86 +111,84 @@ const TeamSection: React.FC = () => {
 
       {/* Carousel */}
       <div className="w-full max-w-full sm:max-w-6xl mt-8 sm:mt-12 relative">
-        {!mounted ? (
-          <div className="flex justify-center items-center h-40">
-            <p className="text-gray-400">Loading...</p>
-          </div>
-        ) : (
-          <Carousel
-            responsive={responsive}
-            infinite
-            arrows
-            customLeftArrow={<CustomLeftArrow />}
-            customRightArrow={<CustomRightArrow />}
-            itemClass="px-2 sm:px-4"
-            afterChange={handleAfterChange}
-          >
-            {testimonials.map((item, index) => {
-              const isActive = index === centerIndex;
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
-                  className={`flex flex-col items-center p-2 sm:p-4 w-full transition-all duration-500 ${
-                    isActive ? "scale-105 sm:scale-110" : "scale-90 opacity-60"
+        <Carousel
+          responsive={{
+            xl: { breakpoint: { max: 3000, min: 1280 }, items: 5 },
+            lg: { breakpoint: { max: 1280, min: 640 }, items: 3 },
+            sm: { breakpoint: { max: 640, min: 0 }, items: 1 },
+          }}
+          infinite
+          arrows
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+          itemClass="px-2 sm:px-4"
+          afterChange={handleAfterChange}
+        >
+          {testimonials.map((item, index) => {
+            const isActive = index === centerIndex;
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+                className={`flex flex-col items-center p-2 sm:p-4 w-full transition-all duration-500 ${
+                  isActive ? "scale-105 sm:scale-110" : "scale-90 opacity-60"
+                }`}
+              >
+                {/* Avatar */}
+                <div
+                  className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden transition-all duration-500 ${
+                    isActive ? "opacity-100 ring-4 ring-purple-600" : "opacity-60"
+                  }`}
+                  style={{
+                    backgroundColor: isActive ? "transparent" : "#E7DAED99",
+                  }}
+                >
+                  <Image
+                    src={item.img}
+                    alt={item.name}
+                    width={112}
+                    height={112}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+
+                {/* Stars */}
+                <div className="flex mt-2 sm:mt-3 space-x-1">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, i) => (
+                      <FaStar
+                        key={i}
+                        className={`text-xl transition-colors duration-300 ${
+                          isActive ? "text-yellow-400" : "text-[#E7DAED99]"
+                        }`}
+                      />
+                    ))}
+                </div>
+
+                {/* Name */}
+                <h3
+                  className={`mt-2 text-lg font-semibold transition-colors duration-500 ${
+                    isActive ? "text-purple-700" : "text-[#E7DAED99]"
                   }`}
                 >
-                  {/* Avatar */}
-                  <div
-                    className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden transition-all duration-500 ${
-                      isActive ? "opacity-100 ring-4 ring-purple-600" : "opacity-60"
-                    }`}
-                    style={{
-                      backgroundColor: isActive ? "transparent" : "#E7DAED99",
-                    }}
-                  >
-                    <Image
-                      src={item.img}
-                      alt={item.name}
-                      width={112}
-                      height={112}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
+                  {item.name}
+                </h3>
 
-                  {/* Stars */}
-                  <div className="flex mt-2 sm:mt-3 space-x-1">
-                    {Array(5)
-                      .fill(0)
-                      .map((_, i) => (
-                        <FaStar
-                          key={i}
-                          className={`text-xl transition-colors duration-300 ${
-                            isActive ? "text-yellow-400" : "text-[#E7DAED99]"
-                          }`}
-                        />
-                      ))}
-                  </div>
-
-                  {/* Name */}
-                  <h3
-                    className={`mt-2 text-lg font-semibold transition-colors duration-500 ${
-                      isActive ? "text-purple-700" : "text-[#E7DAED99]"
-                    }`}
-                  >
-                    {item.name}
-                  </h3>
-
-                  {/* Title */}
-                  <p
-                    className={`text-sm transition-colors duration-500 ${
-                      isActive ? "text-gray-600" : "text-[#E7DAED99]"
-                    }`}
-                  >
-                    {item.title}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </Carousel>
-        )}
+                {/* Title */}
+                <p
+                  className={`text-sm transition-colors duration-500 ${
+                    isActive ? "text-gray-600" : "text-[#E7DAED99]"
+                  }`}
+                >
+                  {item.title}
+                </p>
+              </motion.div>
+            );
+          })}
+        </Carousel>
       </div>
     </section>
   );
