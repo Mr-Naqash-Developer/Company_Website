@@ -2,6 +2,7 @@ import TrustSection from '@/sections/TrustSection'
 import HeroSection from '@/sections/HeroSection'
 import ServicesSection from '@/sections/ServicesSection'
 import MeetingSection from '@/sections/MeetingSection'
+import TeamSection from '@/sections/TeamSection'
 
 const HomePage = () => {
   return (
@@ -10,6 +11,7 @@ const HomePage = () => {
       <ServicesSection />
       <TrustSection />
       <MeetingSection />
+      <TeamSection />
     </div>
   )
 }

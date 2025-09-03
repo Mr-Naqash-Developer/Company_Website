@@ -9,6 +9,9 @@ import meet_carousel_4 from "../assets/meet_carousel_4.png"
 import meet_carousel_5 from "../assets/meet_carousel_5.png"
 import meet_carousel_6 from "../assets/meet_carousel_6.png"
 import meet_carousel_7 from "../assets/meet_carousel_7.png"
+import meet_carousel_8 from "../assets/meet_carousel_8.png"
+import meet_carousel_9 from "../assets/meet_carousel_9.png"
+import meet_carousel_10 from "../assets/meet_carousel_10.png"
 
 export const cards = [
   {
@@ -49,6 +52,7 @@ export const meetCarousel = [
     id: 1,
     img: meet_carousel_1
   },
+  
   {
     id: 2,
     img: meet_carousel_2
@@ -72,5 +76,17 @@ export const meetCarousel = [
   {
     id: 7,
     img: meet_carousel_7
+  },
+  {
+    id: 8,
+    img: meet_carousel_8
+  },
+  {
+    id: 9,
+    img: meet_carousel_9
+  },
+  {
+    id: 10,
+    img: meet_carousel_10
   },
 ]

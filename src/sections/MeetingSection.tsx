@@ -3,7 +3,10 @@
 import Image from "next/image";
 import sphere from "../assets/sphere.png";
 import { meetCarousel } from "@/data/card";
-import Marquee from "react-fast-marquee";
+import dynamic from "next/dynamic";
+
+// Disable SSR for Marquee
+const Marquee = dynamic(() => import("react-fast-marquee"), { ssr: false });
 
 const MeetingSection = () => {
   return (
@@ -25,13 +28,13 @@ const MeetingSection = () => {
       <section className="bg-[#F7F7FA] h-[20vh] flex items-center border-y border-[#E7DAED] overflow-hidden">
         <div className="w-full">
           <Marquee
-            direction="right"
-            speed={20}
             gradient={false}
-            pauseOnHover={false}
-            loop={0}
+            speed={100}
+            direction="right"
+            pauseOnHover={true}
+            className="py-4"
           >
-            <div className="flex items-center gap-12">
+            <div className="flex items-center gap-12 px-6">
               {meetCarousel.map((item) => (
                 <Image
                   key={item.id}
