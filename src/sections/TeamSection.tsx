@@ -79,9 +79,9 @@ const TeamSection: React.FC = () => {
       : (normalizedIndex + centerOffset) % testimonials.length;
 
   return (
-    <section className="min-h-[90vh] bg-white flex flex-col items-center justify-center px-4 sm:px-6 relative">
+    <section className=" bg-white flex flex-col items-center justify-center  px-4 sm:px-6 lg:px-12 py-12  lg:py-28 lg:pb-52 relative ">
       {/* Header */}
-      <div className="text-center flex flex-col justify-center items-center">
+      <div className="text-center flex flex-col justify-center items-center ">
         <hr className="w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
         <h1 className="text-xl sm:text-2xl md:text-4xl text-gray-900 leading-snug">
           Why customers love <br />
@@ -125,69 +125,74 @@ const TeamSection: React.FC = () => {
           afterChange={handleAfterChange}
         >
           {testimonials.map((item, index) => {
-            const isActive = index === centerIndex;
-            return (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-                className={`flex flex-col items-center p-2 sm:p-4 w-full transition-all duration-500 ${
-                  isActive ? "scale-105 sm:scale-110" : "scale-90 opacity-60"
-                }`}
-              >
-                {/* Avatar */}
-                <div
-                  className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden transition-all duration-500 ${
-                    isActive ? "opacity-100 ring-4 ring-purple-600" : "opacity-60"
-                  }`}
-                  style={{
-                    backgroundColor: isActive ? "transparent" : "#E7DAED99",
-                  }}
-                >
-                  <Image
-                    src={item.img}
-                    alt={item.name}
-                    width={112}
-                    height={112}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
+  const isActive =
+    itemsPerView === 1
+      ? true // ✅ small devices → always active
+      : index === centerIndex;
 
-                {/* Stars */}
-                <div className="flex mt-2 sm:mt-3 space-x-1">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, i) => (
-                      <FaStar
-                        key={i}
-                        className={`text-xl transition-colors duration-300 ${
-                          isActive ? "text-yellow-400" : "text-[#E7DAED99]"
-                        }`}
-                      />
-                    ))}
-                </div>
+  return (
+    <motion.div
+      key={item.id}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+      className={`flex flex-col items-center p-2 sm:p-4 w-full transition-all duration-500 ${
+        isActive ? "scale-105 sm:scale-110" : "scale-90 opacity-60"
+      }`}
+    >
+      {/* Avatar */}
+      <div
+        className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden transition-all duration-500 ${
+          isActive ? "opacity-100 ring-4 ring-purple-600" : "opacity-60"
+        }`}
+        style={{
+          backgroundColor: isActive ? "transparent" : "#E7DAED99",
+        }}
+      >
+        <Image
+          src={item.img}
+          alt={item.name}
+          width={112}
+          height={112}
+          className="object-cover w-full h-full"
+        />
+      </div>
 
-                {/* Name */}
-                <h3
-                  className={`mt-2 text-lg font-semibold transition-colors duration-500 ${
-                    isActive ? "text-purple-700" : "text-[#E7DAED99]"
-                  }`}
-                >
-                  {item.name}
-                </h3>
+      {/* Stars */}
+      <div className="flex mt-2 sm:mt-3 space-x-1">
+        {Array(5)
+          .fill(0)
+          .map((_, i) => (
+            <FaStar
+              key={i}
+              className={`text-xl transition-colors duration-300 ${
+                isActive ? "text-yellow-400" : "text-[#E7DAED99]"
+              }`}
+            />
+          ))}
+      </div>
 
-                {/* Title */}
-                <p
-                  className={`text-sm transition-colors duration-500 ${
-                    isActive ? "text-gray-600" : "text-[#E7DAED99]"
-                  }`}
-                >
-                  {item.title}
-                </p>
-              </motion.div>
-            );
-          })}
+      {/* Name */}
+      <h3
+        className={`mt-2 text-lg font-semibold transition-colors duration-500 ${
+          isActive ? "text-purple-700" : "text-[#E7DAED99]"
+        }`}
+      >
+        {item.name}
+      </h3>
+
+      {/* Title */}
+      <p
+        className={`text-sm transition-colors duration-500 ${
+          isActive ? "text-gray-600" : "text-[#E7DAED99]"
+        }`}
+      >
+        {item.title}
+      </p>
+    </motion.div>
+  );
+})}
+
         </Carousel>
       </div>
     </section>
