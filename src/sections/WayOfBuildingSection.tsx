@@ -13,7 +13,7 @@ import sphere_2 from "../assets/sphere-2.png";
 
 const WayOfBuildingSection = () => {
   return (
-    <section className="px-4 sm:px-6 mb-36">
+    <section className="px-4 sm:px-6 mb-36 mt-20">
       <div className="text-center flex flex-col items-center">
         <hr className="w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
         <h1 className="text-2xl sm:text-3xl md:text-4xl">

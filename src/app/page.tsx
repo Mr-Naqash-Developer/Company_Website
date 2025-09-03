@@ -5,6 +5,8 @@ import MeetingSection from '@/sections/MeetingSection'
 import TeamSection from '@/sections/TeamSection'
 import WayOfBuildingSection from '@/sections/WayOfBuildingSection'
 import DevelopmentApproachSection from '@/sections/DevelopmentApproachSection'
+import RecentWorkSection from '@/sections/RecentWorkSection'
+import TimelinePage from '@/sections/TimelinePage'
 
 const HomePage = () => {
   return (
@@ -14,8 +16,10 @@ const HomePage = () => {
       <TrustSection />
       <MeetingSection />
       <TeamSection />
+      <RecentWorkSection />
       <WayOfBuildingSection />
       <DevelopmentApproachSection />
+      <TimelinePage />
     </div>
   )
 }
