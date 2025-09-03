@@ -83,7 +83,7 @@ const TeamSection: React.FC = () => {
       {/* Header */}
       <div className="text-center flex flex-col justify-center items-center">
         <hr className="w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
-        <h1 className="text-xl sm:text-2xl md:text-4xl text-gray-900 leading-snug">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl text-gray-900 leading-snug">
           Why customers love <br />
           <span className="font-bold">working with us</span>
         </h1>
