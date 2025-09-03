@@ -3,8 +3,8 @@ import HeroSection from '@/sections/HeroSection'
 import ServicesSection from '@/sections/ServicesSection'
 import MeetingSection from '@/sections/MeetingSection'
 import TeamSection from '@/sections/TeamSection'
-import RecentWorkSection from '@/sections/RecentWorkSection'
-import TimelinePage from '@/sections/TimelinePage'
+import WayOfBuildingSection from '@/sections/WayOfBuildingSection'
+import DevelopmentApproachSection from '@/sections/DevelopmentApproachSection'
 
 const HomePage = () => {
   return (
@@ -14,8 +14,8 @@ const HomePage = () => {
       <TrustSection />
       <MeetingSection />
       <TeamSection />
-      <RecentWorkSection />
-      <TimelinePage />
+      <WayOfBuildingSection />
+      <DevelopmentApproachSection />
     </div>
   )
 }

@@ -14,7 +14,7 @@ const MeetingSection = () => {
       {/* Top Heading Section */}
       <section className="xl:px-24 mx-auto px-4 sm:px-6 pb-20 sm:pb-12 md:pb-20 relative overflow-hidden">
         <hr className="w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl">
+        <h1 className="text-xl sm:text-2xl md:text-4xl">
           Meet the People <br /> <strong>We are Working with</strong>
         </h1>
         <Image
