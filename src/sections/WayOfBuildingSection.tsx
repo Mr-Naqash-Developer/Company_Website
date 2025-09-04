@@ -43,7 +43,7 @@ const WayOfBuildingSection = () => {
 
           <div className="flex items-center gap-4">
             <hr className="h-20 border-[1px] w-[5px] bg-gradient-to-t from-[#57007B] to-[#F76680]" />
-            <p className="text-sm sm:text-base bg-gradient-to-tr from-[#57007B] to-[#F76680] bg-clip-text text-transparent font-normal">
+            <p className="text-sm sm:text-base bg-gradient-to-tr from-[#57007B] to-[#F76680] bg-clip-text text-transparent font-normal italic">
               "Simform is quick to identify larger problem with the{" "}
               <br className="hidden sm:block" /> Software so we decided to
               expand our scope to build <br className="hidden sm:block" /> new
@@ -106,7 +106,7 @@ const WayOfBuildingSection = () => {
 
           <div className="flex items-center gap-4">
             <hr className="h-20 border-[1px] w-[5px] bg-gradient-to-t from-[#57007B] to-[#F76680]" />
-            <p className="text-sm sm:text-base bg-gradient-to-tr from-[#57007B] to-[#F76680] bg-clip-text text-transparent font-normal">
+            <p className="text-sm sm:text-base bg-gradient-to-tr from-[#57007B] to-[#F76680] bg-clip-text text-transparent font-normal italic">
               "Simform is quick to identify larger problem with the{" "}
               <br className="hidden sm:block" /> Software so we decided to
               expand our scope to build <br className="hidden sm:block" /> new
@@ -170,7 +170,7 @@ const WayOfBuildingSection = () => {
 
           <div className="flex items-center gap-4">
             <hr className="h-20 border-[1px] w-[5px] bg-gradient-to-t from-[#57007B] to-[#F76680]" />
-            <p className="text-sm sm:text-base bg-gradient-to-tr from-[#57007B] to-[#F76680] bg-clip-text text-transparent font-normal">
+            <p className="text-sm sm:text-base bg-gradient-to-tr from-[#57007B] to-[#F76680] bg-clip-text text-transparent font-normal italic">
               "Simform is quick to identify larger problem with the{" "}
               <br className="hidden sm:block" /> Software so we decided to
               expand our scope to build <br className="hidden sm:block" /> new

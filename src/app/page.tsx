@@ -7,6 +7,9 @@ import WayOfBuildingSection from '@/sections/WayOfBuildingSection'
 import DevelopmentApproachSection from '@/sections/DevelopmentApproachSection'
 import RecentWorkSection from '@/sections/RecentWorkSection'
 import TimelinePage from '@/sections/TimelinePage'
+import OurTechStackSection from '@/sections/OutTechStackSection'
+import FeaturedResources from '@/sections/FeaturedResources'
+import HireBanner from '@/components/HireBanner'
 
 const HomePage = () => {
   return (
@@ -19,7 +22,10 @@ const HomePage = () => {
       <RecentWorkSection />
       <WayOfBuildingSection />
       <DevelopmentApproachSection />
+      <OurTechStackSection />
       <TimelinePage />
+      <FeaturedResources />
+      <HireBanner />
     </div>
   )
 }
