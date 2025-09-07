@@ -6,6 +6,33 @@
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
+/* Sphere 1 color vars */
+@property --c1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #F7936F; /* yellow/orange */
+}
+@property --c2 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #FFEF5E;
+}
+
+/* Sphere 2 color vars */
+@property --s2c1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #57007B; /* purple */
+}
+@property --s2c2 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #F76680; /* pink */
+}
+
+
+
+
 @layer utilities {
   /* Dots pagination */
 .swiper-pagination-bullet {
@@ -48,6 +75,13 @@
   scrollbar-width: none;     /* Firefox */
 }
 
+.gradient-sphere {
+  background: linear-gradient(to top right, var(--c1), var(--c2));
+}
 
+.gradient-sphere2 {
+  background: linear-gradient(to top right, var(--s2c1), var(--s2c2));
+  will-change: background;
+}
 
 }

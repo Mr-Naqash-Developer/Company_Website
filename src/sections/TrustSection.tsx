@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import sphere from "../assets/sphere.png";
+import Sphere1 from "@/components/Sphere1";
 
 const TrustSection: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -97,11 +96,7 @@ const TrustSection: React.FC = () => {
       </div>
 
       {/* Sphere image (only visible on md and up) */}
-      <Image
-        className="absolute hidden md:flex top-[-83px] left-1/2 md:left-[10%] -translate-x-1/2 translate-y-1/2 w-16 md:w-20"
-        src={sphere}
-        alt="sphere"
-      />
+      <Sphere1 className="p-10 absolute hidden md:flex top-[-83px] left-1/2 md:left-[10%] -translate-x-1/2 translate-y-1/2 w-16 md:w-20" />
     </section>
   );
 };

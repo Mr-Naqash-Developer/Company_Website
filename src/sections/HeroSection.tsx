@@ -1,6 +1,7 @@
 import Image from "next/image";
 import hero_main from "../assets/hero_main.png";
 import sphere from "../assets/sphere.png";
+import Sphere2 from "@/components/Sphere2";
 
 const HeroSection = () => {
   return (
@@ -25,7 +26,7 @@ const HeroSection = () => {
             to bring your vision to life
           </p>
           <button className="px-6 sm:px-8 py-3 sm:py-4 text-white bg-[#3D63EA] rounded-lg w-fit mx-auto md:mx-0">
-            Let's get started!
+            {`Let's get started!`}
           </button>
         </div>
 
@@ -40,11 +41,7 @@ const HeroSection = () => {
       </div>
 
       {/* Decorative Sphere */}
-      <Image
-        className="absolute hidden md:flex bottom-0 left-1/2 md:left-[35%] -translate-x-1/2 translate-y-1/2 w-16 md:w-20 "
-        src={sphere}
-        alt="sphere"
-      />
+      <Sphere2 className="p-10 absolute hidden md:flex bottom-0 left-1/2 md:left-[35%] -translate-x-1/2 translate-y-1/2 w-16 md:w-20 " />
     </section>
   );
 };
