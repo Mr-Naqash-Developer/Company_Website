@@ -7,6 +7,7 @@ import caseStudy3 from "../assets/caseStudy3.png";
 import leftPointer from "../assets/leftPointer.png";
 import rightPointer from "../assets/rightPointer.png";
 import sphere from "../assets/sphere.png";
+import Sphere2 from "@/components/Sphere2";
 
 const RecentWorkSection = () => {
   const caseStudies = [
@@ -34,12 +35,7 @@ const RecentWorkSection = () => {
       />
 
       {/* Sphere */}
-      <Image
-        src={sphere}
-        alt="Sphere"
-        className="hidden md:block absolute top-20 left-[30%] 
-                   w-6 h-6 lg:w-10 lg:h-10 xl:w-12 xl:h-12"
-      />
+      <Sphere2 className="hidden md:block absolute top-20 left-[30%] p-2" />
 
       {/* Header */}
       <div className="text-center flex flex-col justify-center items-center pb-8 sm:pb-14">

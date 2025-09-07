@@ -4,6 +4,7 @@ import Image from "next/image";
 import sphere from "../assets/sphere.png";
 import { meetCarousel } from "@/data/card";
 import dynamic from "next/dynamic";
+import Sphere2 from "@/components/Sphere2";
 
 // Disable SSR for Marquee
 const Marquee = dynamic(() => import("react-fast-marquee"), { ssr: false });
@@ -17,11 +18,7 @@ const MeetingSection = () => {
         <h1 className="text-xl sm:text-2xl md:text-4xl">
           Meet the People <br /> <strong>We are Working with</strong>
         </h1>
-        <Image
-          src={sphere}
-          alt="vector-image"
-          className="absolute hidden md:flex bottom-0 left-1/2 md:left-[60%] -translate-x-1/2 translate-y-1/2 w-16 md:w-20"
-        />
+        <Sphere2 className="p-10 absolute hidden md:flex bottom-0 left-1/2 md:left-[60%] -translate-x-1/2 translate-y-1/2" />
       </section>
 
       {/* Carousel Section */}

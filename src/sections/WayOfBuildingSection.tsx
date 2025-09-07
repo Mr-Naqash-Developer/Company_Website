@@ -8,8 +8,8 @@ import gt1 from "../assets/gt-1.jpg";
 import gt2 from "../assets/gt-2.jpg";
 import gt3 from "../assets/gt-3.jpg";
 
-import sphere_1 from "../assets/sphere.png";
-import sphere_2 from "../assets/sphere-2.png";
+import Sphere1 from "@/components/Sphere1";
+import Sphere2 from "@/components/Sphere2";
 
 const WayOfBuildingSection = () => {
   return (
@@ -44,10 +44,11 @@ const WayOfBuildingSection = () => {
           <div className="flex items-center gap-4">
             <hr className="h-20 border-[1px] w-[5px] bg-gradient-to-t from-[#57007B] to-[#F76680]" />
             <p className="text-sm sm:text-base bg-gradient-to-tr from-[#57007B] to-[#F76680] bg-clip-text text-transparent font-normal italic">
-              "Simform is quick to identify larger problem with the{" "}
-              <br className="hidden sm:block" /> Software so we decided to
-              expand our scope to build <br className="hidden sm:block" /> new
-              modules"
+              {`"Simform is quick to identify larger problem with the `}
+              <br className="hidden sm:block" />
+              {`Software so we decided to expand our scope to build `}
+              <br className="hidden sm:block" />
+              {`new modules"`}
             </p>
           </div>
 
@@ -66,22 +67,13 @@ const WayOfBuildingSection = () => {
           </div>
         </div>
         <div className="relative">
-          <Image
-            src={sphere_2}
-            alt="sphere"
-            className="w-[40px] md:w-[50px] absolute -z-10 -translate-y-[40%] -left-3 lg:-left-6"
-          />
+          <Sphere1 className="p-4 md:p-9 absolute -z-10 -translate-y-[40%] -left-3 lg:-left-6" />
           <Image
             src={gt1}
             alt="image"
             className="rounded-lg w-full max-w-[800px] h-auto"
           />
-          <Image
-            width={30}
-            src={sphere_1}
-            alt="sphere"
-            className="absolute -z-10 bottom-0 translate-y-1/2 left-[45%]"
-          />
+          <Sphere2 className="p-2 md:p-4 absolute -z-10 bottom-0 translate-y-1/2 left-[45%]" />
         </div>
       </div>
       <div className="flex flex-col mt-20 lg:flex-row-reverse gap-14 xl:gap-20 justify-between items-center max-w-7xl mx-auto">
@@ -107,10 +99,11 @@ const WayOfBuildingSection = () => {
           <div className="flex items-center gap-4">
             <hr className="h-20 border-[1px] w-[5px] bg-gradient-to-t from-[#57007B] to-[#F76680]" />
             <p className="text-sm sm:text-base bg-gradient-to-tr from-[#57007B] to-[#F76680] bg-clip-text text-transparent font-normal italic">
-              "Simform is quick to identify larger problem with the{" "}
-              <br className="hidden sm:block" /> Software so we decided to
-              expand our scope to build <br className="hidden sm:block" /> new
-              modules"
+              {`"Simform is quick to identify larger problem with the `}
+              <br className="hidden sm:block" />
+              {`Software so we decided to expand our scope to build `}
+              <br className="hidden sm:block" />
+              {`new modules"`}
             </p>
           </div>
 
@@ -130,21 +123,13 @@ const WayOfBuildingSection = () => {
         </div>
 
         <div className="relative">
-          <Image
-            src={sphere_1}
-            alt="sphere"
-            className="w-[20px] md:w-[40px] absolute -z-10 -translate-y-[40%] -right-2 lg:-right-6"
-          />
+          <Sphere2 className="p-2 md:p-4 absolute -z-10 -translate-y-[40%] -right-1 md:-right-3 "/>
           <Image
             src={gt2}
             alt="image"
             className="rounded-lg w-full max-w-[800px] h-auto"
           />
-          <Image
-            src={sphere_2}
-            alt="sphere"
-            className="w-[40px] md:w-[60px] absolute -z-10 bottom-0 translate-y-1/2 left-[15%]"
-          />
+          <Sphere1 className="p-5 md:p-9 absolute -z-10 bottom-0 translate-y-1/2 left-[15%]" />
         </div>
       </div>
 
@@ -171,10 +156,11 @@ const WayOfBuildingSection = () => {
           <div className="flex items-center gap-4">
             <hr className="h-20 border-[1px] w-[5px] bg-gradient-to-t from-[#57007B] to-[#F76680]" />
             <p className="text-sm sm:text-base bg-gradient-to-tr from-[#57007B] to-[#F76680] bg-clip-text text-transparent font-normal italic">
-              "Simform is quick to identify larger problem with the{" "}
-              <br className="hidden sm:block" /> Software so we decided to
-              expand our scope to build <br className="hidden sm:block" /> new
-              modules"
+              {`"Simform is quick to identify larger problem with the `}
+              <br className="hidden sm:block" />
+              {`Software so we decided to expand our scope to build `}
+              <br className="hidden sm:block" />
+              {`new modules"`}
             </p>
           </div>
 
@@ -194,21 +180,13 @@ const WayOfBuildingSection = () => {
         </div>
 
         <div className="relative">
-          <Image
-            src={sphere_1}
-            alt="sphere"
-            className="w-[40px] absolute -z-10 -translate-y-[50%] right-[43%]"
-          />
+          <Sphere2 className="p-2 md:p-4 absolute -z-10 -translate-y-[50%] right-[43%]" />
           <Image
             src={gt3}
             alt="image"
             className="rounded-lg w-full max-w-[800px] h-auto"
           />
-          <Image
-            src={sphere_2}
-            alt="sphere"
-            className="w-[40px] md:w-[60px] absolute -z-10 bottom-0 translate-y-[30%] -left-3 md:-left-6"
-          />
+          <Sphere1 className="p-4 md:p-5 absolute -z-10 bottom-0 translate-y-[30%] -left-3 md:-left-4" />
         </div>
       </div>
     </section>
