@@ -1,15 +1,19 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Sphere1 from "@/components/Sphere1";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
+// 🟢 Don’t import ScrollTrigger at the top (causes SSR issue)
 
 const TrustSection: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const togglePlayback = async () => {
     const v = videoRef.current;
     if (!v) return;
-
     try {
       if (v.paused || v.ended) {
         const p = v.play();
@@ -25,15 +29,12 @@ const TrustSection: React.FC = () => {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-
     const onPlay = () => setIsPlaying(true);
     const onPause = () => setIsPlaying(false);
     const onEnded = () => setIsPlaying(false);
-
     v.addEventListener("play", onPlay);
     v.addEventListener("pause", onPause);
     v.addEventListener("ended", onEnded);
-
     return () => {
       v.removeEventListener("play", onPlay);
       v.removeEventListener("pause", onPause);
@@ -41,26 +42,83 @@ const TrustSection: React.FC = () => {
     };
   }, []);
 
+  // ✨ GSAP animations with ScrollTrigger
+  useGSAP(() => {
+    // Import & register plugin only in client
+    (async () => {
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          defaults: { ease: "power3.out" },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        tl.fromTo(".trust-hr", { width: 0 }, { width: "100%", duration: 1 })
+          .to(".trust-hr", { width: "4rem", duration: 0.6 });
+
+        tl.from(
+          ".trust-heading span",
+          {
+            opacity: 0,
+            y: 40,
+            stagger: 0.15,
+            duration: 0.8,
+          },
+          "-=0.3"
+        );
+
+        tl.fromTo(
+          ".trust-para",
+          { opacity: 0, y: 40, filter: "blur(6px)" },
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 1 },
+          "-=0.4"
+        );
+
+        tl.from(
+          ".trust-link",
+          {
+            opacity: 0,
+            x: -20,
+            duration: 0.6,
+          },
+          "-=0.5"
+        );
+      }, sectionRef);
+
+      return () => ctx.revert();
+    })();
+  }, []);
+
   return (
-    <section className="xl:px-24 mx-auto px-4 sm:px-6 py-20 sm:py-32 md:py-44 min-h-[60vh] md:min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="xl:px-24 mx-auto px-4 sm:px-6 py-20 sm:py-32 md:py-44 min-h-[60vh] md:min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center relative overflow-hidden"
+    >
       {/* Left */}
       <div>
-        <hr className="w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl leading-snug mb-6 sm:mb-10">
-          Leading companies trust us <br />
+        <hr className="trust-hr w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
+        <h1 className="trust-heading text-2xl sm:text-3xl md:text-4xl leading-snug mb-6 sm:mb-10">
+          <span>Leading companies trust us</span> <br />
           <span className="text-black font-bold">to develop software</span>
         </h1>
-        <p className="text-gray-600 mb-6 sm:mb-10 max-w-md text-sm sm:text-base">
-          We <span className="text-pink-600">add development capacity</span> to tech teams.
-          Our value isn’t limited to building teams but is equally distributed across
-          the project lifecycle. We are a custom software development company that
-          guarantees the successful delivery of your project.
+        <p className="trust-para text-gray-600 mb-6 sm:mb-10 max-w-md text-sm sm:text-base">
+          We <span className="text-pink-600">add development capacity</span> to tech
+          teams. Our value isn’t limited to building teams but is equally distributed
+          across the project lifecycle. We are a custom software development company
+          that guarantees the successful delivery of your project.
         </p>
         <a
           href="#"
-          className="text-[#57007B] font-semibold hover:underline inline-flex items-center text-sm sm:text-base"
+          className="trust-link text-[#57007B] font-semibold hover:underline inline-flex items-center text-sm sm:text-base"
         >
-          See more Informations <span className="ml-3 sm:ml-5 font-extrabold">→</span>
+          See more Informations{" "}
+          <span className="ml-3 sm:ml-5 font-extrabold">→</span>
         </a>
       </div>
 
@@ -95,7 +153,7 @@ const TrustSection: React.FC = () => {
         )}
       </div>
 
-      {/* Sphere image (only visible on md and up) */}
+      {/* Sphere image */}
       <Sphere1 className="p-10 absolute hidden md:flex top-[-83px] left-1/2 md:left-[10%] -translate-x-1/2 translate-y-1/2 w-16 md:w-20" />
     </section>
   );

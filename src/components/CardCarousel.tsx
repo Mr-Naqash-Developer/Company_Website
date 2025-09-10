@@ -52,8 +52,8 @@ export default function CardCarousel() {
               <div
                 className={`flex flex-col gap-5 rounded-lg p-6 transition-all duration-300
                 ${isActive
-                    ? "bg-white shadow-lg border-2 border-pink-500 translate-y-4"
-                    : "bg-white shadow-md border border-gray-200"
+                    ? "bg-white shadow-lg border-2 border-pink-500 mt-5"
+                    : "bg-white shadow-md border border-gray-200 mb-7"
                   }`}
               >
                 {/* Gradient border with ring */}
