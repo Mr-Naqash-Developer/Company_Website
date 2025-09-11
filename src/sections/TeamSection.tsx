@@ -66,10 +66,7 @@ const TeamSection: React.FC = () => {
     []
   );
 
-  if (!mounted) {
-    // Render nothing on server to avoid mismatch
-    return null;
-  }
+  if (!mounted) return null;
 
   const normalizedIndex = currentSlide % testimonials.length;
   const centerOffset = Math.floor(itemsPerView / 2);
@@ -81,16 +78,34 @@ const TeamSection: React.FC = () => {
   return (
     <section className=" bg-white flex flex-col items-center justify-center  px-4 sm:px-6 lg:px-12 py-12  lg:py-28 lg:pb-52 relative ">
       {/* Header */}
-      <div className="text-center flex flex-col justify-center items-center ">
-        <hr className="w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
+      <motion.div
+        initial={{ opacity: 0, y: -40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="text-center flex flex-col justify-center items-center "
+      >
+        <motion.hr
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6 origin-center"
+        />
         <h1 className="text-2xl sm:text-3xl md:text-4xl text-gray-900 leading-snug">
           Why customers love <br />
           <span className="font-bold">working with us</span>
         </h1>
-      </div>
+      </motion.div>
 
       {/* Quote */}
-      <div className="relative flex items-center justify-center max-w-full sm:max-w-3xl mx-auto mt-12 sm:mt-20 text-center px-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="relative flex items-center justify-center max-w-full sm:max-w-3xl mx-auto mt-12 sm:mt-20 text-center px-4"
+      >
         <Image
           src={leftComma}
           alt="Left Comma"
@@ -107,10 +122,16 @@ const TeamSection: React.FC = () => {
           alt="Right Comma"
           className="absolute right-0 sm:-right-10 bottom-0 w-2 h-4 md:h-7 md:w-4"
         />
-      </div>
+      </motion.div>
 
       {/* Carousel */}
-      <div className="w-full max-w-full sm:max-w-6xl mt-8 sm:mt-12 relative">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className="w-full max-w-full sm:max-w-6xl mt-8 sm:mt-12 relative"
+      >
         <Carousel
           responsive={{
             xl: { breakpoint: { max: 3000, min: 1280 }, items: 5 },
@@ -125,76 +146,74 @@ const TeamSection: React.FC = () => {
           afterChange={handleAfterChange}
         >
           {testimonials.map((item, index) => {
-  const isActive =
-    itemsPerView === 1
-      ? true // ✅ small devices → always active
-      : index === centerIndex;
+            const isActive =
+              itemsPerView === 1 ? true : index === centerIndex;
 
-  return (
-    <motion.div
-      key={item.id}
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-      className={`flex flex-col items-center p-2 sm:p-4 w-full transition-all duration-500 ${
-        isActive ? "scale-105 sm:scale-110" : "scale-90 opacity-60"
-      }`}
-    >
-      {/* Avatar */}
-      <div
-        className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden transition-all duration-500 ${
-          isActive ? "opacity-100 ring-4 ring-purple-600" : "opacity-60"
-        }`}
-        style={{
-          backgroundColor: isActive ? "transparent" : "#E7DAED99",
-        }}
-      >
-        <Image
-          src={item.img}
-          alt={item.name}
-          width={112}
-          height={112}
-          className="object-cover w-full h-full"
-        />
-      </div>
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+                className={`flex flex-col items-center p-2 sm:p-4 w-full transition-all duration-500 ${
+                  isActive ? "scale-105 sm:scale-110" : "scale-90 opacity-60"
+                }`}
+              >
+                {/* Avatar */}
+                <div
+                  className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden transition-all duration-500 ${
+                    isActive ? "opacity-100 ring-4 ring-purple-600" : "opacity-60"
+                  }`}
+                  style={{
+                    backgroundColor: isActive ? "transparent" : "#E7DAED99",
+                  }}
+                >
+                  <Image
+                    src={item.img}
+                    alt={item.name}
+                    width={112}
+                    height={112}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
 
-      {/* Stars */}
-      <div className="flex mt-2 sm:mt-3 space-x-1">
-        {Array(5)
-          .fill(0)
-          .map((_, i) => (
-            <FaStar
-              key={i}
-              className={`text-xl transition-colors duration-300 ${
-                isActive ? "text-yellow-400" : "text-[#E7DAED99]"
-              }`}
-            />
-          ))}
-      </div>
+                {/* Stars */}
+                <div className="flex mt-2 sm:mt-3 space-x-1">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, i) => (
+                      <FaStar
+                        key={i}
+                        className={`text-xl transition-colors duration-300 ${
+                          isActive ? "text-yellow-400" : "text-[#E7DAED99]"
+                        }`}
+                      />
+                    ))}
+                </div>
 
-      {/* Name */}
-      <h3
-        className={`mt-2 text-lg font-semibold transition-colors duration-500 ${
-          isActive ? "text-purple-700" : "text-[#E7DAED99]"
-        }`}
-      >
-        {item.name}
-      </h3>
+                {/* Name */}
+                <h3
+                  className={`mt-2 text-lg font-semibold transition-colors duration-500 ${
+                    isActive ? "text-purple-700" : "text-[#E7DAED99]"
+                  }`}
+                >
+                  {item.name}
+                </h3>
 
-      {/* Title */}
-      <p
-        className={`text-sm transition-colors duration-500 ${
-          isActive ? "text-gray-600" : "text-[#E7DAED99]"
-        }`}
-      >
-        {item.title}
-      </p>
-    </motion.div>
-  );
-})}
-
+                {/* Title */}
+                <p
+                  className={`text-sm transition-colors duration-500 ${
+                    isActive ? "text-gray-600" : "text-[#E7DAED99]"
+                  }`}
+                >
+                  {item.title}
+                </p>
+              </motion.div>
+            );
+          })}
         </Carousel>
-      </div>
+      </motion.div>
     </section>
   );
 };

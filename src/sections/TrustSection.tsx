@@ -44,7 +44,6 @@ const TrustSection: React.FC = () => {
 
   // ✨ GSAP animations with ScrollTrigger
   useGSAP(() => {
-    // Import & register plugin only in client
     (async () => {
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
@@ -54,8 +53,9 @@ const TrustSection: React.FC = () => {
           defaults: { ease: "power3.out" },
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
+            start: "top 80%", // start animation when section hits 80% viewport
+            toggleActions: "play none none none", // play once, don’t reverse
+            once: true, // ensure it only runs the first time
           },
         });
 
@@ -108,10 +108,11 @@ const TrustSection: React.FC = () => {
           <span className="text-black font-bold">to develop software</span>
         </h1>
         <p className="trust-para text-gray-600 mb-6 sm:mb-10 max-w-md text-sm sm:text-base">
-          We <span className="text-pink-600">add development capacity</span> to tech
-          teams. Our value isn’t limited to building teams but is equally distributed
-          across the project lifecycle. We are a custom software development company
-          that guarantees the successful delivery of your project.
+          We <span className="text-pink-600">add development capacity</span> to
+          tech teams. Our value isn’t limited to building teams but is equally
+          distributed across the project lifecycle. We are a custom software
+          development company that guarantees the successful delivery of your
+          project.
         </p>
         <a
           href="#"

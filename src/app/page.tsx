@@ -15,8 +15,8 @@ const HomePage = () => {
   return (
     <div className=''>
       <HeroSection />
-      <ServicesSection />
       <TrustSection />
+      <ServicesSection />
       <MeetingSection />
       <TeamSection />
       <RecentWorkSection />
