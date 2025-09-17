@@ -12,6 +12,16 @@ import nodejs from "../assets/nodejs.png";
 import php from "../assets/php.png";
 import python from "../assets/python.png";
 import rubyonrails from "../assets/rubyonrails.png";
+// ✅ Imported frontend logos
+import html from "../assets/html.png";
+import css from "../assets/css.png";
+import js from "../assets/js.png"
+import react from "../assets/react.png"
+import nextjs from "../assets/nextjs.png";
+import tailwindcss from "../assets/tailwind.png";
+import bootstrap from "../assets/Bootstrap.png";
+import angular from "../assets/angilar.png";
+import vue from "../assets/Vue.png";
 
 const techStackData: Record<string, { name: string; logo: any }[]> = {
   Backend: [
@@ -25,7 +35,17 @@ const techStackData: Record<string, { name: string; logo: any }[]> = {
     { name: "MySQL", logo: mysql },
     { name: "MongoDB", logo: mongodb },
   ],
-  Frontend: [],
+  Frontend: [
+    { name: "HTML", logo: html },
+    { name: "CSS", logo: css },
+    { name: "Javascript", logo: js },
+    { name: "React", logo: react },
+    { name: "Next Js", logo: nextjs },
+    { name: "Tailwind Css", logo: tailwindcss },
+    { name: "Bootstrap", logo: bootstrap },
+    { name: "Angular", logo: angular },
+    { name: "Vue", logo: vue },
+  ],
   Databases: [],
   CMS: [],
   CloudTesting: [],
@@ -37,7 +57,7 @@ const OutTechStackSection = () => {
     useState<keyof typeof techStackData>("Backend");
 
   return (
-    <section className="mt-20 border-b flex flex-col justify-center items-center border-[#E7DAED] pb-20">
+    <section className="mt-20  border-b flex flex-col justify-center items-center border-[#E7DAED] pb-20">
       {/* Heading */}
       <div className="flex flex-col justify-center items-center text-center">
         <hr className="w-16 border-2 h-2 bg-gradient-to-tr from-[#57007B] to-[#F76680] mb-4 sm:mb-6" />
@@ -73,7 +93,7 @@ const OutTechStackSection = () => {
             key={tech.name}
             className="flex flex-col items-center justify-center"
           >
-            <Image src={tech.logo} alt={tech.name} width={220} />
+            <Image src={tech.logo} alt={tech.name} width={224} height={4} />
           </div>
         ))}
       </div>
