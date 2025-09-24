@@ -32,8 +32,6 @@ const techStackData: Record<string, { name: string; logo: any }[]> = {
     { name: "Rails", logo: rubyonrails },
     { name: ".NET Core", logo: netcore },
     { name: "Go", logo: go },
-    { name: "MySQL", logo: mysql },
-    { name: "MongoDB", logo: mongodb },
   ],
   Frontend: [
     { name: "HTML", logo: html },
@@ -46,7 +44,10 @@ const techStackData: Record<string, { name: string; logo: any }[]> = {
     { name: "Angular", logo: angular },
     { name: "Vue", logo: vue },
   ],
-  Databases: [],
+  Databases: [
+    { name: "MySQL", logo: mysql },
+    { name: "MongoDB", logo: mongodb },
+  ],
   CMS: [],
   CloudTesting: [],
   DevOps: [],
@@ -97,7 +98,7 @@ const OutTechStackSection = () => {
           </div>
         ))}
       </div>
-    </section>
+    </section> 
   );
 };
 
